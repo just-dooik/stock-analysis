@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from datetime import date
+from typing import Optional
 
 class StockPriceBase(BaseModel):
     company_id: int 
@@ -8,7 +9,7 @@ class StockPriceBase(BaseModel):
     high: float
     low: float
     close: float
-    adjusted_close: float
+    adjusted_close: Optional[float] = None
     volume: int
 
 class StockPriceCreate(StockPriceBase): 

@@ -13,7 +13,7 @@ config = context.config
 config.set_main_option('sqlalchemy.echo', 'True')   
 
 # Get the database URL from the environment variable
-db_url = os.getenv('DATABASE_URL')
+db_url = os.getenv('LOCAL_DATABASE_URL')
 if db_url:
     config.set_main_option('sqlalchemy.url', db_url)
 

@@ -8,10 +8,10 @@ class Company(Base):
     id = Column(Integer, primary_key=True, index=True)
     ticker = Column(String, unique=True, index=True)
     name = Column(String, index=True)      
-    sector = Column(String)
     ipo_date = Column(Date)
+    current_price = Column(Numeric)
     change = Column(Numeric)
-    last_update = Column(Date)  
+    last_update = Column(Date)
 
     stock_prices = relationship('StockPrice', back_populates='company', cascade='all, delete-orphan')   
     dividends = relationship('Dividend', back_populates='company', cascade='all, delete-orphan')    
