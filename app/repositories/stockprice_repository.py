@@ -40,4 +40,4 @@ class StockPriceRepository:
         return self.db.query(StockPrice).filter(StockPrice.company_id == company_id, StockPrice.date == date).first()
 
     def get_adjusted_close_by_company_id(self, company_id: int):
-        return self.db.query(StockPrice.adjusted_close).filter(StockPrice.company_id == company_id).all()   
+        return self.db.query(StockPrice.adjusted_close, StockPrice.date).filter(StockPrice.company_id == company_id).all()   

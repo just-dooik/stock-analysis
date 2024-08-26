@@ -19,6 +19,6 @@ async def get_sma(company_id: int, window: int, techIndicatorService: TechIndica
 async def get_rsi(company_id: int, window: int, techIndicatorService = Depends(get_tech_indicator_service)):      
     return techIndicatorService.calculate_rsi(company_id, window)   
 
-@router.get("/bbands/{company_id}/{window}/{stdev}", response_model=list)   
-async def get_bbands(company_id: int, window: int, stdev: int, techIndicatorService = Depends(get_tech_indicator_service)):      
-    return techIndicatorService.calculate_bbands(company_id, window, stdev)    
+@router.get("/bbands/{company_id}/{window}/{num_stdev}", response_model=list)   
+async def get_bbands(company_id: int, window: int, num_stdev: int, techIndicatorService = Depends(get_tech_indicator_service)):      
+    return techIndicatorService.calculate_bbands(company_id, window, num_stdev)    
