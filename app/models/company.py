@@ -14,5 +14,3 @@ class Company(Base):
     last_update = Column(Date)
 
     stock_prices = relationship('StockPrice', back_populates='company', cascade='all, delete-orphan')   
-    dividends = relationship('Dividend', back_populates='company', cascade='all, delete-orphan')    
-    stock_splits = relationship('StockSplit', back_populates='company', cascade='all, delete-orphan')   

@@ -1,19 +1,19 @@
 import yfinance as yf   
 import pandas as pd
 from sqlalchemy.orm import Session
-from app.repositories import StockPriceRepository, StockSplitRepository, CompanyRepository, DividendRepository  
+from app.repositories import StockPriceRepository, CompanyRepository
 from app.src.companyList import companyList 
 from datetime import datetime
+import logging
 
 # 처음 데이터를 가져올 때 사용하는 함수
 class CompanyService: 
     def __init__(self, db: Session):
         self.db = db
         self.companyRepository = CompanyRepository(db)
-        self.stockSplitRepository = StockSplitRepository(db)   
-        self.dividendRepository = DividendRepository(db)   
         self.stockPriceRepository = StockPriceRepository(db)   
-    def init_all(self):
+
+    def init_company(self):
         print("Initializing data")  
         try:
             for company in companyList:
@@ -30,13 +30,15 @@ class CompanyService:
                 
                 self.companyRepository.create_company(ticker, name, ipo_date, current_price, change, last_update)
                 
-                self.stockSplitRepository.init_stock_split(data, company, ipo_date)
+                logging.info(f"Company {name} created") 
 
-                self.dividendRepository.init_dividend(data, company, ipo_date)
-
-                self.stockPriceRepository.init_stock_price(data, company, ipo_date)
-                
         except Exception as e:
             print(e)
             return False    
         return True
+    
+    def get_companies(self):
+        return self.companyRepository.get_companies()   
+    
+    def get_company_by_id(self, company_id: int):
+        return self.companyRepository.get_company_by_id(company_id) 

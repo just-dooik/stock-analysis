@@ -4,7 +4,7 @@ from alembic import context
 import os
 from dotenv import load_dotenv
 from app.database import Base
-from app.models import company, stocksplit, dividend, stockprice
+from app.models import company, stockprice
 
 load_dotenv()
 

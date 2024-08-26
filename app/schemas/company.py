@@ -1,20 +1,15 @@
 from pydantic import BaseModel  
-from datetime import date
+from datetime import datetime
 
-class CompanyBase(BaseModel):
+
+class Company(BaseModel):
+    id: int
     ticker: str
     name: str
-    ipo_date: date
+    ipo_date: datetime
+    current_price: float
     change: float
-
-
-class CompanyCreate(CompanyBase):
-    pass    
-
-class Company(CompanyBase):
-    id: int
-    created_at: date
-    updated_at: date
+    last_update: datetime
 
     class Config:
-        orm_mode = True 
+        orm_mode = True

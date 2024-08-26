@@ -28,4 +28,10 @@ class CompanyRepository:
     
     def get_company_by_ticker(self, ticker:str):
         return self.db.query(Company).filter(Company.ticker == ticker).first()
+
+    def get_company_by_id(self, company_id: int):   
+        return self.db.query(Company).filter(Company.id == company_id).first()
+        
+    def get_companies(self):
+        return self.db.query(Company).all() 
     
